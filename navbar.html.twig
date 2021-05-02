@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary mb-3">
+ <div class="container">
+ <a href="/" class="navbar-brand">Aya Mhatli</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile-nav"> 
+  <span class="navbar-toggle-icon"></span>
+   </button>
+    <div class="collapse navbar-collapse" id="mobile-nav"> 
+    <ul class="navbar-nav ml-auto">
+     <li class="nav-item">
+      <a href="/" class="nav-link">Home</a> 
+      </li>
+      {% if is_granted('ROLE_EDITOR') %}
+       <li class="nav-item"> 
+      <a href="{{ path('new_employee')}}" class="nav-link">Ajouter Employee</a>
+       </li>
+       <li class="nav-item"> 
+         <a href="{{ path('new_entreprise')}}" class="nav-link">Ajouter entreprise</a> 
+       </li>
+       {% endif %}
+       <li class="nav-item"> <a href="{{ path('employee_par_ent')}}" class="nav-link">Recherche par entreprise</a> </li>
+       <li class="nav-item"> <a href="{{path('employee_par_salaire')}}" class="nav-link">Recherche par salaire</a> </li>
+         {% if not app.user %}
+       <li class="nav-item"> <a href="{{ path('security_login')}}" class="nav-link">Connexion</a> 
+       </li> 
+          {% else %}
+       <li class="nav-item"> <a href="{{ path('security_logout')}}" class="nav-link">Déconnexion</a> 
+       </li>
+       {% endif %}
+        </ul> 
+        </div> 
+        </div> 
+        </nav>

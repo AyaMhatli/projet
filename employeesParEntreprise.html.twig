@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %} 
+{% block title%} Liste des Employees par Entreprise{% endblock %} 
+{% block body %} 
+  {{ form_start(form) }}
+     <div class="form-row align-items-end" > 
+     <div class="col"> 
+      {{ form_row(form.entreprise) }}
+       </div> 
+       <div class="col"> 
+       <div class="form-group">
+         <button type="submit" class="btn btn-success">Rechercher</button> 
+         </div>
+          </div> 
+          </div> 
+          {{ form_end(form) }} 
+          {% if employees %}
+             <table id="employees" class="table table-striped"> 
+             <thead> 
+             <tr>
+              <th>Nom</th>
+              <th>Salaire</th> 
+              <th>Entreprise</th> 
+              <th>Actions</th> 
+              </tr>
+               </thead>
+                <tbody> 
+                {% for employee in employees %} 
+                <tr>
+                 <td>{{ employee.nom }}</td> 
+                 <td>{{ employee.salaire }}</td> 
+              <td>{{     employee.entreprise.nomm }}</td>
+              <td>
+               <a href="/employee/{{ employee.id }}" class="btn btn-dark">Détails</a>
+                <a href="/employee/edit/{{ employee.id }}" class="btn btn-dark">Modifier</a> 
+                <a href="/employee/delete/{{ employee.id }}" class="btn btn-danger" onclick="return confirm('Etes-vous sûr de supprimer cet article?');">Supprimer</a>
+                </td> 
+                </tr>
+                 {% endfor %} 
+                 </tbody> 
+                 </table> 
+                 {% else %} 
+                <p>Aucun employees</p>
+                {% endif %} 
+                
+                {% endblock %}
